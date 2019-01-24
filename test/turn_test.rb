@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/card'
-require '../lib/turn'
+require './lib/card'
+require './lib/turn'
 
 class TurnTest < Minitest::Test
 
@@ -46,7 +46,7 @@ class TurnTest < Minitest::Test
     turn_t = Turn.new(guess_true, card)
     turn_f = Turn.new(guess_false, card)
 
-    assert_equal "Correct!" turn_t.feedback
-    assert_equal "Incorrect." turn_f.feedback
+    assert_equal "Correct!", turn_t.feedback
+    assert_equal "Incorrect.", turn_f.feedback
   end
 end

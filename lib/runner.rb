@@ -7,3 +7,6 @@ t = Turn.new(5,c)
 require 'pry'
 
 binding.pry
+
+class Test
+end

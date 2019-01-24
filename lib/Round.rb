@@ -24,7 +24,11 @@ class Round
   end
 
   def number_correct_by_category(category)
-    
+
+    @turns.each do |turn|
+
+    end
   end
+
 
 end
