@@ -23,7 +23,12 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_has_cards
-    # assert # Do card test on each card?
+    deck = Deck.new(cards)
+
+    deck.cards.each do |card|
+      assert_instance_of Card, card
+    end
+
   end
 
   def test_it_has_count
