@@ -5,19 +5,20 @@ require './lib/turn'
 
 class TurnTest < Minitest::Test
   def setup
+    # Create Card
     @card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
 
+    # Create Two Guesses; correct and incorrect
     @guess_true = "Juneau"
     @guess_false = "Washington"
 
+    # Create Two Turns; one with correct, and one with incorrect ans
     @turn_t = Turn.new(@guess_true, @card)
     @turn_f = Turn.new(@guess_false, @card)
-
   end
 
 
   def test_it_exists
-
     assert_instance_of Turn, @turn_t
     assert_instance_of Turn, @turn_f
   end
