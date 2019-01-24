@@ -24,4 +24,17 @@ class RoundTest <Minitest::Test
     @round = Round.new(@deck)
   end
 
+  def test_it_exists
+    assert_instance_of Round, @round
+  end
+
+  def test_it_has_attributes
+    assert_instance_of Deck, round.deck
+    assert_equal 0, round.number_correct
+    assert_instance_of Array, round.turns
+  end
+
+  def test_it_has_current_card
+    # assert_
+  end
 end
