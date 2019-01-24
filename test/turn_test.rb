@@ -4,10 +4,14 @@ require './lib/card'
 require './lib/turn'
 
 class TurnTest < Minitest::Test
+  def setup
+    @card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
 
-  @card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
-  @guess_true = "Juneau"
-  @guess_false = "Washington"
+    @guess_true = "Juneau"
+    @guess_false = "Washington"
+
+  end
+
 
   def test_it_exists
     turn_t = Turn.new(@guess_true, @card)
