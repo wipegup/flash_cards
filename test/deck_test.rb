@@ -47,5 +47,5 @@ class DeckTest < Minitest::Test
       assert_equal deck.cards_in_category(cat) categories.count(cat)
     end
 
-    
+
   end
