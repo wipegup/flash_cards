@@ -76,6 +76,24 @@ class RoundTest < Minitest::Test
     end
 
     assert_equal num_correct, @round.number_correct
+  end
+
+  def test_number_correct_by_category
+    categories = @deck.cards.map do |card|
+      card.category
+    end
+
+
+    categories.uniq.each do |category|
+      true_correct_in_category = 0
+      @round.turns.each do |turn|
+        if turn.correct? && turn.card.category == category
+          true_correct_in_category +=1
+        end
+      end
+      assert_equal true_correct_in_category, @round.number_correct_by_category(category)
+    end
 
   end
+
 end
