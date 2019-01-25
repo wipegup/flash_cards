@@ -25,6 +25,8 @@ class Deck
     categories = @cards.map do |card|
       card.category
     end
+
+    return categories.uniq
   end
 
 end

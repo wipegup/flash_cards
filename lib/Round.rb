@@ -15,13 +15,20 @@ class Round
     while @turns.length < @deck.cards.length
       solicit_response
     end
-
-    puts " **************** GAME OVER **************"
-    puts "You had #{number_correct} out of #{@turns.length} correct"
-    
-
+    round_summary
   end
 
+  def round_summary
+    puts " **************** GAME OVER **************"
+    puts "You had #{number_correct} out of #{@turns.length} correct"
+
+    @deck.categories_in_deck.each do |category|
+      correct = number_correct_by_category(category).to_f
+      total = @deck.cards_in_category(category)
+
+      puts "#{category} -- #{(correct/total*100).round} %"
+    end
+  end
   def solicit_response
     puts ""
     puts "This is card number #{(@turns.length) +1} out of #{@deck.cards.length}"
