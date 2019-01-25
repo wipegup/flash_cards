@@ -28,9 +28,9 @@ class TurnTest < Minitest::Test
     assert_equal @guess_false, @turn_f.guess
   end
 
-  def test_it_has_card
-    assert_instance_of Card, @turn_t.card
-    assert_instance_of Card, @turn_f.card
+  def test_it_has_correct_card
+    assert_equal @card, @turn_t.card
+    assert_equal @card, @turn_f.card
   end
 
   def test_it_has_correct?

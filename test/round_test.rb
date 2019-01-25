@@ -3,19 +3,20 @@ require './lib/card'
 require './lib/round'
 require './lib/turn'
 
-class RoundTest <Minitest::Test
+class RoundTest < Minitest::Test
 
   def setup
     # Create list of Questions,Answers, and Categories
-    @questions = ["2+2", "5+3","4+10", "7+14"]
-    @answers = [4,8,14,21]
-    @categories = [:Geography, :STEM, :STEM, :Math]
+    card_info = [
+      ["2+2", 4, :Geography],
+      ["5+3", 8, :STEM],
+      ["4+10", 14, :STEM],
+      ["7+14", 21, :Math]
+    ]
 
-    # Create Cards and add to list
     @cards = []
-
-    @questions.zip(@answers, @categories).each do |args|
-      @cards << Card.new(*args)
+    card_info.each do |card_arg|
+      @cards << Card.new(*card_arg)
     end
 
     # Build Deck
@@ -29,9 +30,9 @@ class RoundTest <Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_instance_of Deck, round.deck
-    assert_equal 0, round.number_correct
-    assert_instance_of Array, round.turns
+    assert_equal @deck, round.deck
+    # assert_equal 0, round.number_correct
+    assert_equal [], round.turns
   end
 
   def test_it_has_current_card

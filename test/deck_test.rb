@@ -5,16 +5,16 @@ require './lib/Deck'
 
 class DeckTest < Minitest::Test
   def setup
-    # Create list of Questions,Answers, and Categories
-    @questions = ["2+2", "5+3","4+10", "7+14"]
-    @answers = [4,8,14,21]
-    @categories = [:Geography, :STEM, :STEM, :Math]
+    card_info = [
+      ["2+2", 4, :Geography],
+      ["5+3", 8, :STEM],
+      ["4+10", 14, :STEM],
+      ["7+14", 21, :Math]
+    ]
 
-    # Create Cards and add to list
     @cards = []
-
-    @questions.zip(@answers, @categories).each do |args|
-      @cards << Card.new(*args)
+    card_info.each do |card_arg|
+      @cards << Card.new(*card_arg)
     end
 
     # Build Deck
@@ -26,19 +26,30 @@ class DeckTest < Minitest::Test
   end
 
   def test_it_has_cards
-    @deck.cards.each do |card|
-      assert_instance_of Card, card
+    @deck.cards.zip(@cards).each do |deck_card, input_card|
+      assert_equal input_card, deck_card
     end
 
   end
 
   def test_it_has_count
-    assert_equal @deck.count, @questions.length
+    assert_equal @deck.count, @cards.length
   end
 
   def test_it_has_cards_in_category
-    @categories.uniq.each do |cat|
-      assert_equal @deck.cards_in_category(cat), @categories.count(cat)
+    category_hash = {}
+
+    @cards.each do |category|
+      
+      if !category_hash.key?(category)
+        category_hash[category] = 1
+      else
+        category_hash[category] +=1
+      end
+    end
+
+    category_hash.each_key do |category|
+      assert_equal @deck.cards_in_category(cat), category_hash[category]
     end
 
   end

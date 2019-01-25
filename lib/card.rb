@@ -5,6 +5,11 @@ class Card
     @question = question
     @answer = answer
     @category = category
-    
+
   end
+
+  # def ==(other)
+  #
+  # end
+
 end

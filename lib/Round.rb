@@ -4,7 +4,7 @@ class Round
   def initialize(deck)
     @deck = deck
     @turns = []
-    @number_correct = 0
+    @number_correct = 0 # change to method
   end
 
   def current_card
@@ -26,7 +26,7 @@ class Round
   def number_correct_by_category(category)
 
     @turns.each do |turn|
-
+        ####
     end
   end
 
