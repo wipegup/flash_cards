@@ -1,3 +1,5 @@
+require './lib/deck'
+require './lib/turn'
 class Round
   attr_reader :deck, :turns, :number_correct
 
@@ -5,6 +7,31 @@ class Round
     @deck = deck
     @turns = []
     # @number_correct = 0 # change to method
+  end
+
+  def start
+    puts "Welcome! You're playing with #{@deck.cards.length} cards."
+    puts " --------------------------------------"
+    while @turns.length < @deck.cards.length
+      solicit_response
+    end
+
+    puts " **************** GAME OVER **************"
+    puts "You had #{number_correct} out of #{@turns.length} correct"
+    
+
+  end
+
+  def solicit_response
+    puts ""
+    puts "This is card number #{(@turns.length) +1} out of #{@deck.cards.length}"
+    puts current_card.question
+    puts ">"
+    guess = gets.chomp.to_i
+
+    turn = take_turn(guess)
+
+    puts turn.feedback
   end
 
   def current_card
@@ -32,13 +59,13 @@ class Round
   end
 
   def number_correct_by_category(category)
-    correct_by_category = 0
-    @turns.each do |turn|
-        if turn.correct? && turn.card.category == category
-          correct_by_category +=1
-        end
+    correct_in_category = @turns.find_all do |turn|
+      turn.correct? && turn.card.category == category
     end
+
+    return correct_in_category.length
   end
+
 
 
 end

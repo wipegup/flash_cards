@@ -1,6 +1,7 @@
+require './lib/card'
 class Deck
   attr_reader :cards
-  
+
   def initialize( cards )
     @cards = cards
   end
@@ -20,5 +21,10 @@ class Deck
     return count
   end
 
+  def categories_in_deck
+    categories = @cards.map do |card|
+      card.category
+    end
+  end
 
 end
