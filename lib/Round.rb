@@ -24,14 +24,11 @@ class Round
   end
 
   def number_correct
-    num_correct = 0
-    @turns.each do |turn|
-      if turn.correct?
-        num_correct +=1
-      end
+    correct_turns = @turns.find_all do |turn|
+      turn.correct?
     end
 
-    return num_correct
+    return correct_turns.length
   end
 
   def number_correct_by_category(category)
