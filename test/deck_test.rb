@@ -39,8 +39,8 @@ class DeckTest < Minitest::Test
   def test_it_has_cards_in_category
     category_hash = {}
 
-    @cards.each do |category|
-      
+    @cards.each do |card|
+      category = card.category
       if !category_hash.key?(category)
         category_hash[category] = 1
       else
@@ -49,8 +49,21 @@ class DeckTest < Minitest::Test
     end
 
     category_hash.each_key do |category|
-      assert_equal @deck.cards_in_category(cat), category_hash[category]
+      assert_equal @deck.cards_in_category(category), category_hash[category]
     end
 
   end
+
+  def test_it_has_categories_in_deck
+    categories = []
+    @cards.each do |card|
+      categories << card.category
+    end
+
+    categories.uniq.each do |category|
+      assert @deck.categories_in_deck.include?(category)
+    end
+  end
+
+
 end
