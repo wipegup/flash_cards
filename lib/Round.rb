@@ -29,6 +29,7 @@ class Round
       puts "#{category} -- #{(correct/total*100).round} %"
     end
   end
+
   def solicit_response
     puts ""
     puts "This is card number #{(@turns.length) +1} out of #{@deck.cards.length}"
