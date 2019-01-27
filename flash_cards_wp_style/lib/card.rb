@@ -8,6 +8,9 @@ class Card
 
   end
 
+  def to_s
+    "Question: #{@question}\nAnswer: #{@answer}"
+  end
   # def ==(other)
   #
   # end
