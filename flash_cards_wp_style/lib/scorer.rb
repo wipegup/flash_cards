@@ -44,5 +44,34 @@ class Scorer
         puts "#{key} -- #{(correct/total*100).round} %"
       end
     end
+
+    puts "************************\n"
   end
+
+
+  def print_card(card)
+    puts "Question: #{card.question}"
+    puts "Answer: #{card.answer}"
+  end
+
+  def correct_summary
+    puts "You got these questions right:"
+    puts "---------------------------"
+    @turns[true].each do |card|
+      print_card(card)
+      print "\n"
+    end
+    print "\n\n"
+  end
+
+  def incorrect_summary
+    puts "You got these questions wrong"
+    puts "---------------------------"
+    @turns[false].each do |card, guess|
+      print_card(card)
+      puts "Your Guess: #{guess}\n\n"
+    end
+    print "\n\n"
+  end
+
 end

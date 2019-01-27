@@ -33,4 +33,9 @@ class Round
   def display_score
     @scorer.score_summary
   end
+
+  def complete_summary
+    @scorer.incorrect_summary
+    @scorer.correct_summary
+  end
 end

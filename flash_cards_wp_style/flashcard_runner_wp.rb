@@ -8,3 +8,4 @@ round = Round.new(cards)
 
 round.start
 round.display_score
+round.complete_summary
