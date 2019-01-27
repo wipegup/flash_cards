@@ -12,10 +12,15 @@ class Round
   def start
     puts "Welcome! You're playing with #{@deck.cards.length} cards."
     puts " --------------------------------------"
+
+    # play_game
+    # round_summary
+  end
+
+  def play_game
     while @turns.length < @deck.cards.length
       solicit_response
     end
-    round_summary
   end
 
   def round_summary
@@ -34,8 +39,8 @@ class Round
     puts ""
     puts "This is card number #{(@turns.length) +1} out of #{@deck.cards.length}"
     puts current_card.question
-    puts ">"
-    guess = gets.chomp.to_i
+    print "> "
+    guess = gets.chomp
 
     turn = take_turn(guess)
 
