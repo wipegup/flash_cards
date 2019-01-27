@@ -38,8 +38,6 @@ class Scorer
     return @feedback[correct]
   end
 
-
-
   def increment_question_totals(category)
 
     check_category_in_score(category)
@@ -69,35 +67,34 @@ class Scorer
 
   def score_summary
     puts " **************** GAME OVER **************"
-    puts "You had #{@score['Total'][0]} out of #{@score['Total'][1]} correct"
+    puts "You had #{@score['Total'][0]} out of #{@score['Total'][1]} correct\n\n"
 
-    @score.keys.each do |key|
-      if key != 'Total'
-        correct, total = @score[key]
-        puts "#{key} -- #{(correct/total*100).round} %"
+    @score.keys.each do |category|
+      if category != 'Total'
+        correct, total = @score[category]
+        puts "#{category} -- #{(correct/total*100).round} %"
       end
     end
+
     puts "************************\n"
   end
 
   def correct_summary
     puts "You got these questions right:"
     puts "---------------------------"
+
     @turns[true].each do |card|
-      puts card.to_s
-      print "\n"
+      puts "#{card.to_s}\n\n"
     end
-    print "\n\n"
   end
 
   def incorrect_summary
     puts "You got these questions wrong:"
     puts "---------------------------"
+
     @turns[false].each do |card, guess|
       puts card.to_s
       puts "Your Guess: #{guess}\n\n"
     end
-    print "\n\n"
   end
-
 end

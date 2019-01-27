@@ -15,6 +15,10 @@ class Round
     play_game
   end
 
+  def shuffle
+    cards.shuffle!
+  end
+  
   def play_game
     @cards.each do |card|
       guess = solicit_response(card.question)
@@ -36,6 +40,7 @@ class Round
 
   def complete_summary
     @scorer.incorrect_summary
+    print "\n\n"
     @scorer.correct_summary
   end
 end
