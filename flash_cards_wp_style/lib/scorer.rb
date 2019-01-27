@@ -41,11 +41,9 @@ class Scorer
 
 
   def increment_question_totals(category)
-    # Check to see if category exists in score table;
-    # if not, add to table
+
     check_category_in_score(category)
 
-    # Increment question totals
     increment_score_array(category, "total")
 
   end
@@ -66,7 +64,7 @@ class Scorer
   end
 
 #####################
-# Returning Summaries
+# Creating Summaries
 #####################
 
   def score_summary
