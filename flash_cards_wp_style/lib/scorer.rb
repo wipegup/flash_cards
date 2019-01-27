@@ -8,42 +8,15 @@ class Scorer
     @score = {'Total' =>[0,0]}
   end
 
-  def check_category_in_score(category)
-    if !@score.has_key?(category)
-      @score[category] = [0,0.0]
-    end
-  end
-  def increment_question_totals(category)
-    # Check to see if category exists in score table;
-    # if not, add to table
-    check_category_in_score(category)
-
-
-    # Increment question totals
-    increment_score_array(category, "total")
-
-  end
-
-  def increment_score_array(category, total_or_correct)
-    if total_or_correct == "correct"
-      index = 0
-    elsif total_or_correct == "total"
-      index = 1
-    else
-      return "Error"
-    end
-
-    @score['Total'][index] +=1
-    @score[category][index] +=1
-
-    return true
-  end
+################
+# Updating Score
+################
 
   def score(card, guess)
     # Determine whether or not correct guess
     correct = card.answer == guess
     category = card.category
-    
+
     # Increment question totals for "total" and category
     increment_question_totals(category)
 
@@ -64,6 +37,37 @@ class Scorer
     # Return feedback
     return @feedback[correct]
   end
+
+
+
+  def increment_question_totals(category)
+    # Check to see if category exists in score table;
+    # if not, add to table
+    check_category_in_score(category)
+
+    # Increment question totals
+    increment_score_array(category, "total")
+
+  end
+
+  def check_category_in_score(category)
+    if !@score.has_key?(category)
+      @score[category] = [0,0.0]
+    end
+  end
+
+  def increment_score_array(category, total_or_correct)
+    index_hash = {"correct" =>0, "total"=>1}
+    index = index_hash[total_or_correct]
+
+    @score['Total'][index] +=1
+    @score[category][index] +=1
+
+  end
+
+#####################
+# Returning Summaries
+#####################
 
   def score_summary
     puts " **************** GAME OVER **************"
