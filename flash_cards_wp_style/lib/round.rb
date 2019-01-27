@@ -16,9 +16,9 @@ class Round
   end
 
   def shuffle
-    cards.shuffle!
+    @cards.shuffle!
   end
-  
+
   def play_game
     @cards.each do |card|
       guess = solicit_response(card.question)
