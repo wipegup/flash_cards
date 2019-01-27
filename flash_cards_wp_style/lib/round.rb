@@ -18,7 +18,7 @@ class Round
   def play_game
     @cards.each do |card|
       guess = solicit_response(card.question)
-      @scorer.score(card, guess)
+      puts @scorer.score(card, guess)
       puts "-------------------\n"
     end
   end
